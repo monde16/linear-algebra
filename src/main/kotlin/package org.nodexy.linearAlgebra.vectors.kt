@@ -51,8 +51,14 @@ data class Vector(val values: Array<Double>) {
     }
 
     fun len(): Double = Math.sqrt(values.map { it*it }.reduce { x, y-> x+y})
-    fun theta(): Double {
-        TODO()
+
+    /**
+     * Answer is in radians
+     */
+    fun theta(other: Vector): Double {
+        val u = this
+        val v = other
+        return Math.acos((u dot v)/(u.len() * v.len()))
     }
 
     fun normalize(): Vector = this times (1.0 / len())
